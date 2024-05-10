@@ -1,6 +1,8 @@
 # US Census Data Explorer
 
-This repository contains a dashboard app for downloading U.S. Census Bureau data (Decennial Census, American Community Survey, LEHD) using Census API Keys. Register for an API Key [here](https://api.census.gov/data/key_signup.html).
+This repository contains a dashboard app for downloading U.S. Census Bureau data (Decennial Census, American Community Survey, LEHD) using Census API Keys.
+
+![US Census Data Explorer](https://github.com/ar-puuk/uscensus-dashboard/blob/main/Data%20Explorer%20Preview.png)
 
 ## Getting Started
 
