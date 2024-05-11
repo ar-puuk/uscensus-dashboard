@@ -352,8 +352,10 @@ server <- function(input, output, session) {
       )
 
       result_acs <- result_acs %>%
+        # remove the margin of error columns from the column names
         select(-matches("M$")) %>%
-        rename_all(~ sub("E$", "", .))
+        # remove E at the end of all Estimate columns (columns ending in E except for NAME column)
+        rename_at(vars(-matches("^NAME$")), ~sub("E$", "", .))
 
       return(result_acs)
     } else {
