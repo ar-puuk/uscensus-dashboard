@@ -352,10 +352,8 @@ server <- function(input, output, session) {
       )
 
       result_acs <- result_acs %>%
-        # remove the margin of error columns from the column names
         select(-matches("M$")) %>%
-        # remove E at the end of all Estimate columns (columns ending in E except for NAME column)
-        rename_at(vars(-matches("^NAME$")), ~sub("E$", "", .))
+        rename_all(~ sub("E$", "", .))
 
       return(result_acs)
     } else {
@@ -664,6 +662,19 @@ server <- function(input, output, session) {
 # Define UI
 ui <- fluidPage(
   theme = shinytheme("cosmo"),
+  tags$head(
+    tags$style(
+      HTML("
+           .navbar {
+             min-height: 70px; /* Adjust the height as needed */
+           }
+           .navbar-nav>li>a {
+             padding-top: 20px; /* Adjust the top padding of the navbar items */
+             padding-bottom: 20px; /* Adjust the bottom padding of the navbar items */
+           }
+           ")
+    )
+  ),
   navbarPage(
     # theme = "darkly",  # <--- To use a theme, uncomment this
     div(
@@ -672,17 +683,17 @@ ui <- fluidPage(
     ),
     # ACS Tabpanel
     tabPanel(
-      h4("ACS"),
+      strong("ACS", style = "font-size: 18pt;"),
       acsUI
     ),
     # Census Tabpanel
     tabPanel(
-      h4("Census"),
+      strong("Census", style = "font-size: 18pt;"),
       censusUI
     ),
     # LEHD Tabpanel
     tabPanel(
-      h4("LEHD"),
+      strong("LEHD", style = "font-size: 18pt;"),
       lehdUI
     )
   ) # navbarPage
